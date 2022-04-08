@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import words from './words.json'
+// import words from './words.json'
 const ALPHABET = [
   'A',
   'B',
@@ -31,17 +31,38 @@ const ALPHABET = [
 //How to store the state in a variable
 export function App() {
   const [guessedLetters, setGuessedLetters] = useState('')
-  const [secretWord, setSecretWord] = useState(words[0])
+  const [secretWord, setSecretWord] = useState('')
+  const [correctLetters, setCorrectLetters] = useState('')
+
+  async function newGame() {
+    setGuessedLetters('')
+
+    const response = await fetch(
+      'https://sdg-words.herokuapp.com/api/words/random'
+    )
+    if (response.ok) {
+      const word = await response.json()
+      setSecretWord(word.toUpperCase())
+    }
+  }
 
   function clickOnLetter(letter: string) {
     // Makes a new state USING the old state plus the new letter
     setGuessedLetters(guessedLetters + letter)
+    if (secretWord.includes(letter)) {
+      setCorrectLetters(correctLetters + letter)
+      console.log(setCorrectLetters)
+      console.log('correct')
+    }
   }
   console.log(guessedLetters)
 
   return (
     <div>
-      <div>Your guessed letter are: {guessedLetters}</div>
+      <button onClick={() => newGame()}>New Game</button>
+      <h1>Your guessed letter are: {guessedLetters}</h1>
+      <h2>{secretWord}</h2>
+      <h2>{correctLetters}</h2>
       {ALPHABET.map(function (letter) {
         return (
           <button
