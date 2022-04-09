@@ -1,4 +1,14 @@
 import React, { useState } from 'react'
+//importing the images to build a snowman
+import step_0 from '/src/images/step_0.png'
+import step_1 from '/src/images/step_1.png'
+import step_2 from '/src/images/step_2.png'
+import step_3 from '/src/images/step_3.png'
+import step_4 from '/src/images/step_4.png'
+import step_5 from '/src/images/step_5.png'
+import step_6 from '/src/images/step_6.png'
+import step_7 from '/src/images/step_7.png'
+// dont need below code since i'm fetching a world from an API
 // import words from './words.json'
 const ALPHABET = [
   'A',
@@ -36,6 +46,7 @@ export function App() {
 
   async function newGame() {
     setGuessedLetters('')
+    setCorrectLetters('')
 
     const response = await fetch(
       'https://sdg-words.herokuapp.com/api/words/random'
