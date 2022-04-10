@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+
 //importing the images to build a snowman
 import step_0 from '/src/images/step_0.png'
 import step_1 from '/src/images/step_1.png'
@@ -43,6 +44,7 @@ export function App() {
   const [guessedLetters, setGuessedLetters] = useState('')
   const [secretWord, setSecretWord] = useState('')
   const [correctLetters, setCorrectLetters] = useState('')
+  const [numberOfCorrectLetters, setNumberOfCorrectLetters] = useState(0)
 
   async function newGame() {
     setGuessedLetters('')
@@ -56,14 +58,38 @@ export function App() {
       setSecretWord(word.toUpperCase())
     }
   }
-
+  function displaySnowImage() {
+    switch (numberOfCorrectLetters) {
+      case 1:
+        return step_1
+      case 2:
+        return step_2
+      case 3:
+        return step_3
+      case 4:
+        return step_4
+      case 5:
+        return step_5
+      case 6:
+        return step_6
+      case 7:
+        return step_7
+      default:
+        return step_0
+    }
+  }
   function clickOnLetter(letter: string) {
     // Makes a new state USING the old state plus the new letter
-    setGuessedLetters(guessedLetters + letter)
-    if (secretWord.includes(letter)) {
-      setCorrectLetters(correctLetters + letter)
-      console.log(setCorrectLetters)
-      console.log('correct')
+    if (secretWord === '') {
+      return
+    } else {
+      setGuessedLetters(guessedLetters + letter)
+      if (secretWord.includes(letter)) {
+        setCorrectLetters(correctLetters + letter)
+        setNumberOfCorrectLetters(numberOfCorrectLetters + 1)
+        console.log(numberOfCorrectLetters)
+        console.log(setCorrectLetters)
+      }
     }
   }
   console.log(guessedLetters)
@@ -71,6 +97,7 @@ export function App() {
   return (
     <div>
       <button onClick={() => newGame()}>New Game</button>
+      <img src={displaySnowImage()} />
       <h1>Your guessed letter are: {guessedLetters}</h1>
       <h2>{secretWord}</h2>
       <h2>{correctLetters}</h2>

@@ -1,18 +1,30 @@
-:root {
-  font: 16px / 1 sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
+:root {
+  // font: 16px / 1 sans-serif;
+  font-family: 'Staatliches', cursive;
   // SDG brand colors
   --asphalt: #2f3737;
   --bright-sky: #80ced2;
-  --lime: #b1d133;
   --night-sky: #85577e;
   --sand: #f7f0da;
   --sea: #5a9090;
-  --sun: #d5562b;
-  --tangerine: #f99d1b;
 }
-
+div {
+  display: flex;
+}
+img {
+  border: 1px solid var(--bright-sky);
+  -webkit-box-shadow: 10px 16px 48px -7px rgba(29, 156, 224, 0.64);
+  -moz-box-shadow: 10px 16px 48px -7px rgba(29, 156, 224, 0.64);
+  box-shadow: 10px 16px 48px -7px rgba(29, 156, 224, 0.64);
+  width: 295px;
+  height: 295px;
+  background-size: 100%;
+  margin: 0 15px;
+}
 button {
+  font-family: 'Staatliches', cursive;
   font-size: 1rem;
   background: grey;
   margin: 0;
