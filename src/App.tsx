@@ -11,34 +11,37 @@ import step_6 from '/src/images/step_6.png'
 import step_7 from '/src/images/step_7.png'
 // dont need below code since i'm fetching a world from an API
 // import words from './words.json'
-const ALPHABET = [
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-  'T',
-  'U',
-  'V',
-  'W',
-  'X',
-  'Y',
-  'Z',
-]
+const ALPHABET = [...Array(26)].map((_, i) => String.fromCharCode(i + 65)) // A-Z
+console.log(ALPHABET)
+
+// [
+//   'A',
+//   'B',
+//   'C',
+//   'D',
+//   'E',
+//   'F',
+//   'G',
+//   'H',
+//   'I',
+//   'J',
+//   'K',
+//   'L',
+//   'M',
+//   'N',
+//   'O',
+//   'P',
+//   'Q',
+//   'R',
+//   'S',
+//   'T',
+//   'U',
+//   'V',
+//   'W',
+//   'X',
+//   'Y',
+//   'Z',
+// ]
 //How to store the state in a variable
 export function App() {
   const [guessedLetters, setGuessedLetters] = useState('')
@@ -95,6 +98,9 @@ export function App() {
         // for each letter correctly guessed letter in secret word, replace the dash with the letter
 
         // let newWordDisplayed = ''
+        for (let index = 0; index < secretWord.length; index++) {
+          if (secretWord[index] === letter) { 
+            
         // secretWord.split('').map((letter, index) => {
         //   if (secretWord[index] === letter) {
         //     newWordDisplayed = newWordDisplayed.concat(letter)
