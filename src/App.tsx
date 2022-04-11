@@ -45,7 +45,8 @@ export function App() {
   const [secretWord, setSecretWord] = useState('')
   const [correctLetters, setCorrectLetters] = useState('')
   const [numberOfCorrectLetters, setNumberOfCorrectLetters] = useState(0)
-
+  const [wordDisplayed, setWordDisplayed] = useState('-------')
+  // const [playable, setPlayable] = useState(true)
   async function newGame() {
     setGuessedLetters('')
     setCorrectLetters('')
@@ -79,15 +80,29 @@ export function App() {
     }
   }
   function clickOnLetter(letter: string) {
-    // Makes a new state USING the old state plus the new letter
+    //guard statement to make sure buttons can't be clicked before game starts
     if (secretWord === '') {
       return
     } else {
+      // Makes a new state USING the old state plus the new letter
       setGuessedLetters(guessedLetters + letter)
+      // If the letter is in the secret word
       if (secretWord.includes(letter)) {
+        //Make a list of all correctly guessed letters
         setCorrectLetters(correctLetters + letter)
+        //Counts number of correctly guessed letters
         setNumberOfCorrectLetters(numberOfCorrectLetters + 1)
-        console.log(numberOfCorrectLetters)
+        // for each letter correctly guessed letter in secret word, replace the dash with the letter
+
+        // let newWordDisplayed = ''
+        // secretWord.split('').map((letter, index) => {
+        //   if (secretWord[index] === letter) {
+        //     newWordDisplayed = newWordDisplayed.concat(letter)
+        //   } else {
+        //     newWordDisplayed = newWordDisplayed.concat(wordDisplayed[index])
+        //   }
+
+        //        console.log(numberOfCorrectLetters)
         console.log(setCorrectLetters)
       }
     }
@@ -96,24 +111,33 @@ export function App() {
 
   return (
     <div>
-      <button onClick={() => newGame()}>New Game</button>
-      <img src={displaySnowImage()} />
-      <h1>Your guessed letter are: {guessedLetters}</h1>
-      <h2>{secretWord}</h2>
-      <h2>{correctLetters}</h2>
-      {ALPHABET.map(function (letter) {
-        return (
-          <button
-            key={letter}
-            onClick={function () {
-              clickOnLetter(letter)
-            }}
-            disabled={guessedLetters.includes(letter)}
-          >
-            {letter}
-          </button>
-        )
-      })}
+      <p>
+        <h1>Do you want to Build a SNOWMAN?</h1>
+        <button className="newGame" onClick={() => newGame()}>
+          New Game
+        </button>
+
+        <img src={displaySnowImage()} />
+        <span>{wordDisplayed}</span>
+        <h2>Your guessed letter are: {guessedLetters}</h2>
+        {/* <h2>{correctLetters}</h2> */}
+      </p>
+      <p className="abc">
+        {ALPHABET.map(function (letter) {
+          return (
+            <button
+              className="abc"
+              key={letter}
+              onClick={function () {
+                clickOnLetter(letter)
+              }}
+              disabled={guessedLetters.includes(letter)}
+            >
+              {letter}
+            </button>
+          )
+        })}
+      </p>
     </div>
   )
 }
