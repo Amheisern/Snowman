@@ -12,7 +12,6 @@ import step_7 from '/src/images/step_7.png'
 // dont need below code since i'm fetching a world from an API
 // import words from './words.json'
 const ALPHABET = [...Array(26)].map((_, i) => String.fromCharCode(i + 65)) // A-Z
-console.log(ALPHABET)
 
 // [
 //   'A',
@@ -49,11 +48,9 @@ export function App() {
   const [correctLetters, setCorrectLetters] = useState('')
   const [numberOfCorrectLetters, setNumberOfCorrectLetters] = useState(0)
   const [wordDisplayed, setWordDisplayed] = useState('-------')
-  // const [playable, setPlayable] = useState(true)
-  async function newGame() {
-    setGuessedLetters('')
-    setCorrectLetters('')
+  const [playable, setPlayable] = useState('New Game')
 
+  async function gameOn() {
     const response = await fetch(
       'https://sdg-words.herokuapp.com/api/words/random'
     )
@@ -61,6 +58,13 @@ export function App() {
       const word = await response.json()
       setSecretWord(word.toUpperCase())
     }
+  }
+  function newGame() {
+    setGuessedLetters('')
+    setCorrectLetters('')
+    setNumberOfCorrectLetters(0)
+    setWordDisplayed('-------')
+    gameOn()
   }
   function displaySnowImage() {
     switch (numberOfCorrectLetters) {
@@ -83,6 +87,9 @@ export function App() {
     }
   }
   function clickOnLetter(letter: string) {
+    if (correctLetters.length === wordDisplayed.length - 1) {
+      setPlayable('Try Again')
+    }
     //guard statement to make sure buttons can't be clicked before game starts
     if (secretWord === '') {
       return
@@ -124,17 +131,17 @@ export function App() {
 
   return (
     <div>
-      <p>
+      <body>
         <h1>Do you want to Build a SNOWMAN?</h1>
         <button className="newGame" onClick={() => newGame()}>
-          New Game
+          {playable}
         </button>
 
         <img src={displaySnowImage()} />
         <span>{wordDisplayed}</span>
         <h2>Your guessed letter are: {guessedLetters}</h2>
         {/* <h2>{correctLetters}</h2> */}
-      </p>
+      </body>
       <p className="abc">
         {ALPHABET.map(function (letter) {
           return (
