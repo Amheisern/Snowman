@@ -97,23 +97,30 @@ export function App() {
         setNumberOfCorrectLetters(numberOfCorrectLetters + 1)
         // for each letter correctly guessed letter in secret word, replace the dash with the letter
 
-        // let newWordDisplayed = ''
+        let newWordDisplayed = ''
         for (let index = 0; index < secretWord.length; index++) {
-          if (secretWord[index] === letter) { 
-            
+          // if (letter.include(secretWord[index] || secretWord[index] === '-')) {
+          //   newWordDisplayed.push(secretWord[index])
+          // }
+          secretWord[index] === letter
+            ? (newWordDisplayed = newWordDisplayed.concat(letter))
+            : (newWordDisplayed = newWordDisplayed.concat(wordDisplayed[index]))
+        }
+        setWordDisplayed(newWordDisplayed)
         // secretWord.split('').map((letter, index) => {
         //   if (secretWord[index] === letter) {
         //     newWordDisplayed = newWordDisplayed.concat(letter)
         //   } else {
         //     newWordDisplayed = newWordDisplayed.concat(wordDisplayed[index])
         //   }
-
         //        console.log(numberOfCorrectLetters)
-        console.log(setCorrectLetters)
+        console.log(`secret word ${secretWord}`)
+        console.log(`word displayed ${wordDisplayed}`)
+        console.log(`guessed Letters ${guessedLetters}`)
+        console.log(`set Correct Letters ${correctLetters}`)
       }
     }
   }
-  console.log(guessedLetters)
 
   return (
     <div>
