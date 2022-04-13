@@ -29,26 +29,7 @@ export function App() {
     setWordDisplayed('-------')
     gameOn()
   }
-  // function displaySnowImage() {
-  //   switch (numberOfCorrectLetters) {
-  //     case 1:
-  //       return step_1
-  //     case 2:
-  //       return step_2
-  //     case 3:
-  //       return step_3
-  //     case 4:
-  //       return step_4
-  //     case 5:
-  //       return step_5
-  //     case 6:
-  //       return step_6
-  //     case 7:
-  //       return step_7
-  //     default:
-  //       return step_0
-  //   }
-  // }
+
   function clickOnLetter(letter: string) {
     if (correctLetters.length === wordDisplayed.length - 1) {
       setPlayable('Try Again')
@@ -82,7 +63,6 @@ export function App() {
         //     newWordDisplayed = newWordDisplayed.concat(wordDisplayed[index])
         //    return newWordDisplayed
         //   }
-        //        console.log(numberOfCorrectLetters)
         console.log(`secret word ${secretWord}`)
         console.log('*********')
         console.log(`word displayed ${wordDisplayed}`)
