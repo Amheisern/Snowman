@@ -13,34 +13,6 @@ import step_7 from '/src/images/step_7.png'
 // import words from './words.json'
 const ALPHABET = [...Array(26)].map((_, i) => String.fromCharCode(i + 65)) // A-Z
 
-// [
-//   'A',
-//   'B',
-//   'C',
-//   'D',
-//   'E',
-//   'F',
-//   'G',
-//   'H',
-//   'I',
-//   'J',
-//   'K',
-//   'L',
-//   'M',
-//   'N',
-//   'O',
-//   'P',
-//   'Q',
-//   'R',
-//   'S',
-//   'T',
-//   'U',
-//   'V',
-//   'W',
-//   'X',
-//   'Y',
-//   'Z',
-// ]
 //How to store the state in a variable
 export function App() {
   const [guessedLetters, setGuessedLetters] = useState('')
@@ -106,9 +78,6 @@ export function App() {
 
         let newWordDisplayed = ''
         for (let index = 0; index < secretWord.length; index++) {
-          // if (letter.include(secretWord[index] || secretWord[index] === '-')) {
-          //   newWordDisplayed.push(secretWord[index])
-          // }
           secretWord[index] === letter
             ? (newWordDisplayed = newWordDisplayed.concat(letter))
             : (newWordDisplayed = newWordDisplayed.concat(wordDisplayed[index]))
@@ -117,13 +86,18 @@ export function App() {
         // secretWord.split('').map((letter, index) => {
         //   if (secretWord[index] === letter) {
         //     newWordDisplayed = newWordDisplayed.concat(letter)
+        //    return newWordDisplayed
         //   } else {
         //     newWordDisplayed = newWordDisplayed.concat(wordDisplayed[index])
+        //    return newWordDisplayed
         //   }
         //        console.log(numberOfCorrectLetters)
         console.log(`secret word ${secretWord}`)
+        console.log('*********')
         console.log(`word displayed ${wordDisplayed}`)
+        console.log('*********')
         console.log(`guessed Letters ${guessedLetters}`)
+        console.log('*********')
         console.log(`set Correct Letters ${correctLetters}`)
       }
     }
@@ -131,7 +105,7 @@ export function App() {
 
   return (
     <div>
-      <body>
+      <section>
         <h1>Do you want to Build a SNOWMAN?</h1>
         <button className="newGame" onClick={() => newGame()}>
           {playable}
@@ -140,8 +114,7 @@ export function App() {
         <img src={displaySnowImage()} />
         <span>{wordDisplayed}</span>
         <h2>Your guessed letter are: {guessedLetters}</h2>
-        {/* <h2>{correctLetters}</h2> */}
-      </body>
+      </section>
       <p className="abc">
         {ALPHABET.map(function (letter) {
           return (
