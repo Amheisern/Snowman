@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Snowman } from './components/Snowman'
+import { Snow } from './components/Snow'
 
 // dont need below code since i'm fetching a world from an API
 const ALPHABET = [...Array(26)].map((_, i) => String.fromCharCode(i + 65)) // A-Z
@@ -10,7 +11,7 @@ export function App() {
   const [secretWord, setSecretWord] = useState('')
   const [correctLetters, setCorrectLetters] = useState('')
   const [numberOfCorrectLetters, setNumberOfCorrectLetters] = useState(0)
-  const [wordDisplayed, setWordDisplayed] = useState('-------')
+  const [wordDisplayed, setWordDisplayed] = useState('_______')
   const [playable, setPlayable] = useState('New Game')
 
   async function gameOn() {
@@ -26,7 +27,7 @@ export function App() {
     setGuessedLetters('')
     setCorrectLetters('')
     setNumberOfCorrectLetters(0)
-    setWordDisplayed('-------')
+    setWordDisplayed('_______')
     gameOn()
   }
 
@@ -63,6 +64,7 @@ export function App() {
         //     newWordDisplayed = newWordDisplayed.concat(wordDisplayed[index])
         //    return newWordDisplayed
         //   }
+
         console.log(`secret word ${secretWord}`)
         console.log('*********')
         console.log(`word displayed ${wordDisplayed}`)
@@ -76,31 +78,35 @@ export function App() {
 
   return (
     <div>
-      <section>
-        <h1>Do you want to Build a SNOWMAN?</h1>
-        <button className="newGame" onClick={() => newGame()}>
-          {playable}
-        </button>
-        <Snowman numberOfCorrectLetters={numberOfCorrectLetters} />
-        <span>{wordDisplayed}</span>
-        <h2>Your guessed letter are: {guessedLetters}</h2>
-      </section>
-      <p className="abc">
-        {ALPHABET.map(function (letter) {
-          return (
-            <button
-              className="abc"
-              key={letter}
-              onClick={function () {
-                clickOnLetter(letter)
-              }}
-              disabled={guessedLetters.includes(letter)}
-            >
-              {letter}
-            </button>
-          )
-        })}
-      </p>
+      <Snow />
+      <main>
+        <header>
+          <h1>Do you want to Build a SNOWMAN?</h1>
+          <button className="newGame" onClick={() => newGame()}>
+            {playable}
+          </button>
+          <Snowman numberOfCorrectLetters={numberOfCorrectLetters} />
+          <span>{wordDisplayed}</span>
+          <h2>Your guessed letter are: {guessedLetters}</h2>
+        </header>
+        <section>
+          {ALPHABET.map(function (letter) {
+            return (
+              <button
+                className="abc"
+                key={letter}
+                onClick={function () {
+                  clickOnLetter(letter)
+                }}
+                disabled={guessedLetters.includes(letter)}
+              >
+                {letter}
+              </button>
+            )
+          })}
+        </section>
+        <footer>Made by Amheiser</footer>
+      </main>
     </div>
   )
 }

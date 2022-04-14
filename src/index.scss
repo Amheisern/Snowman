@@ -8,18 +8,49 @@
   --bright-sky: #80ced2;
   --night-sky: #85577e;
   --sand: #f7f0da;
-  --sea: #5a9090;
+  --snow: rgb(41, 143, 203);
+  background: radial-gradient(
+    farthest-corner at 50% 50%,
+    #7397a1 1%,
+    #3f2c41 100%
+  );
 }
 div {
+  font-family: 'Staatliches', cursive;
+  color: var(--snow);
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
 }
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 header {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+h1 {
+  font-family: 'Staatliches', cursive;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--snow);
+  margin-bottom: 1rem;
+}
+
+.newGame {
+  color: var(--snow);
+  background-color: var(--bright-sky);
+  margin-bottom: 1rem;
+}
+
 img {
   display: flex;
   justify-content: center;
@@ -33,19 +64,32 @@ img {
   background-size: 100%;
   margin: 0 15px;
 }
+header span {
+  display: flex;
+  justify-content: space-evenly;
+  color: var(--snow);
+  margin-top: 1rem;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 100px;
+  width: 100%;
+}
+h2 {
+  font-family: 'Staatliches', cursive;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--snow);
+  margin-bottom: 1rem;
+  border: 1px solid var(--bright-sky);
+  box-shadow: 10px 16px 48px -7px rgba(29, 156, 224, 0.64);
+}
 section {
   display: flex;
-  flex-direction: column;
   align-items: center;
-}
-.newGame {
-  color: var(--bright-sky);
-  background-color: var(--night-sky);
+  justify-content: center;
+  flex-wrap: wrap;
 }
 .abc {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-gap: 5px;
   width: 30px;
   height: 40px;
@@ -56,12 +100,110 @@ section {
   padding: 0.5rem;
 }
 
+footer {
+  margin-top: 5rem;
+}
 button:disabled {
   background: #ccc;
   opacity: 0.5;
   cursor: not-allowed;
 }
-
-span .hidden {
-  visibility: hidden;
+.wrapper {
+  width: 300vw;
+  height: 300vh;
+  background: radial-gradient(
+    farthest-corner at 30vw 20vh,
+    #7397a1 1%,
+    #3f2c41 100%
+  );
+}
+$s1: '';
+$s2: '';
+$s3: '';
+@for $i from 1 through 300 {
+  $s1: $s1 +
+    random(1000) *
+    0.1vw +
+    ' ' +
+    random(1000) *
+    0.1vh +
+    ' ' +
+    0 +
+    ' ' +
+    random(50) *
+    -0.01rem +
+    #fff;
+  $s2: $s2 +
+    random(1000) *
+    0.1vw +
+    ' ' +
+    random(1000) *
+    0.1vh +
+    ' ' +
+    0 +
+    ' ' +
+    random(50) *
+    -0.01rem +
+    #fff;
+  $s3: $s3 +
+    random(1000) *
+    0.1vw +
+    ' ' +
+    random(1000) *
+    0.1vh +
+    ' ' +
+    0 +
+    ' ' +
+    random(50) *
+    -0.01rem +
+    #fff;
+  @if $i < 300 {
+    $s1: $s1 + ',';
+    $s2: $s2 + ',';
+    $s3: $s3 + ',';
+  }
+}
+.snow {
+  border-radius: 50%;
+  opacity: 0.8;
+  position: absolute;
+  top: -100vh;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+.layer1 {
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: blur(1.5px);
+  box-shadow: #{$s1};
+  animation-duration: 6s;
+}
+.layer1.a {
+  animation-delay: -3s;
+}
+.layer2 {
+  width: 1.2rem;
+  height: 1.2rem;
+  filter: blur(3px);
+  box-shadow: #{$s2};
+  animation-duration: 8s;
+}
+.layer2.a {
+  animation-delay: -4s;
+}
+.layer3 {
+  width: 0.8rem;
+  height: 0.8rem;
+  filter: blur(6px);
+  box-shadow: #{$s3};
+  animation-duration: 10s;
+}
+.layer3.a {
+  animation-delay: -5s;
+}
+@keyframes fall {
+  100% {
+    transform: translateY(200vh);
+  }
 }
