@@ -10,7 +10,7 @@ import step_6 from '/src/images/step_6.png'
 import step_7 from '/src/images/step_7.png'
 
 export function Snowman(props: { numberOfCorrectLetters: number }) {
-  return <img src={displaySnowImage()} />
+  return <img src={displaySnowImage()} alt="Snowman" />
 
   function displaySnowImage() {
     switch (props.numberOfCorrectLetters) {
