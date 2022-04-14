@@ -77,9 +77,10 @@ export function App() {
   }
 
   return (
-    <div>
-      <Snow />
+    <div className="test">
+      {/* <Snow /> */}
       <main>
+        <Snow />
         <header>
           <h1>Do you want to Build a SNOWMAN?</h1>
           <button className="newGame" onClick={() => newGame()}>

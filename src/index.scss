@@ -1,13 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
 
 :root {
-  // font: 16px / 1 sans-serif;
-  font-family: 'Staatliches', cursive;
+  // font: 16px / 1 'Staatliches', cursive;
+  font-family: 'Snowburst One', cursive;
   // SDG brand colors
-  --asphalt: #2f3737;
+
   --bright-sky: #80ced2;
-  --night-sky: #85577e;
-  --sand: #f7f0da;
   --snow: rgb(41, 143, 203);
   background: radial-gradient(
     farthest-corner at 50% 50%,
@@ -15,15 +13,15 @@
     #3f2c41 100%
   );
 }
-div {
-  font-family: 'Staatliches', cursive;
+div.test {
+  // font-family: 'Staatliches', cursive;
   color: var(--snow);
-  display: flex;
+  // display: flex;
   align-items: center;
   justify-content: center;
   margin: 0;
-  width: 100vw;
-  height: 100vh;
+  // width: 100vw;
+  // height: 100vh;
 }
 main {
   display: flex;
@@ -38,7 +36,7 @@ header {
   align-items: center;
 }
 h1 {
-  font-family: 'Staatliches', cursive;
+  // font-family: 'Staatliches', cursive;
   font-size: 2.5rem;
   font-weight: bold;
   color: var(--snow);
@@ -49,6 +47,7 @@ h1 {
   color: var(--snow);
   background-color: var(--bright-sky);
   margin-bottom: 1rem;
+  font-family: 'Snowburst One', cursive;
 }
 
 img {
@@ -75,7 +74,7 @@ header span {
   width: 100%;
 }
 h2 {
-  font-family: 'Staatliches', cursive;
+  // font-family: 'Staatliches', cursive;
   font-size: 1.5rem;
   font-weight: bold;
   color: var(--snow);
@@ -108,9 +107,13 @@ button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
+html,
+body {
+  margin: 0;
+}
 .wrapper {
-  width: 300vw;
-  height: 300vh;
+  width: 100vw;
+  // height: 100vh;
   background: radial-gradient(
     farthest-corner at 30vw 20vh,
     #7397a1 1%,
@@ -167,7 +170,7 @@ $s3: '';
   border-radius: 50%;
   opacity: 0.8;
   position: absolute;
-  top: -100vh;
+  top: -50vh;
   animation-name: fall;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
