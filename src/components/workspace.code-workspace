@@ -1,0 +1,14 @@
+{
+  "folders": [
+	{
+		"path": "..\\.."
+	},
+	{
+		"path": "..\\..\\..\\Minesweeper"
+	},
+	{
+		"path": "..\\..\\..\\ReactTicTacToe"
+	}
+],
+  "settings": {}
+}
